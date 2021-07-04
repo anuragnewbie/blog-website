@@ -1,0 +1,24 @@
+<%- include("partials/header"); -%>
+
+	<p> <%= headContent %> </p>
+
+	<% postList.forEach(function(element) { %>
+		<div class="card">
+			<div class="content">
+				<div class="post-image"></div>
+				<div class="publish">
+					<a href="#" class="author"><i class="fas fa-user"></i> &nbsp; <%= Anurag %></a>
+					<a href="#" class="date"><i class="fas fa-calendar-alt"></i> &nbsp;June 23, 2021</a>
+				</div>
+			</div>
+			<div class="post">
+				<h1 class="title"> <%= element.title %> </h1>
+				<p class="description"> <%= element.content.substring(0, 150) + " ... " %> </p>
+				<div class="cta">
+					<small><a href="/post/<%= element.title %>">Read More &rarr;</a></small>
+				</div>
+			</div>            
+		</div>
+	<% }); %>
+
+<%- include("partials/footer"); -%>
