@@ -29,6 +29,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    list-style: none;
 }
 
 p{
@@ -48,19 +49,15 @@ h1 {
 .navbar {
     width: 100%;
     background-color: #191347 !important;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
-    border-radius: 0;
+    padding: 15px 0;
     margin-bottom: 0;
-    font-size: 12px;
     letter-spacing: 5px;
 }
 
 .navbar-header a, 
 .navbar-nav  li a {
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #fff;
     list-style: none;
 }
@@ -68,10 +65,6 @@ h1 {
 .navbar-header a:hover, 
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
-}
-
-.nav-link {
-    margin: 15px;
 }
 
 /* home page design */
@@ -90,7 +83,7 @@ button[type="submit"] {
     font-weight: bold;
 }
 
-.card {
+.main {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -107,7 +100,7 @@ button[type="submit"] {
     overflow: hidden;
 }
 
-.image, .post-image {
+.image {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -119,8 +112,26 @@ button[type="submit"] {
     transition: transform 4s;
 }
 
-.card:hover .image {
-    transform: scale(1.5);
+.post-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    z-index: -1;
+    transition: transform 4s;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.main:hover .image {
+    transform: scale(1.3);
 }
 
 .publish {
@@ -138,10 +149,15 @@ button[type="submit"] {
 .author {
     display: inline-block;
     margin-bottom: .55rem;
+    text-transform: capitalize;
 }
 
 .date {
     display: block;
+}
+
+.author, .date {
+    text-align: left;
 }
 
 .post {
@@ -156,12 +172,12 @@ button[type="submit"] {
     line-height: 1;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .description {
     position: relative;
-    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -170,6 +186,37 @@ button[type="submit"] {
     text-align: right;
     font-weight: bold;
     margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* post view design */
+.card {
+    opacity: 0.92;
+    box-shadow: 2px .8rem 1rem rgba(0, 0, 0, .5);
+}
+
+.likeicon, .dislikeicon {
+    cursor: pointer;
+}
+
+.likeicon:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.dislikeicon:hover {
+    color: black;
+    transform: scale(1.1);
+}
+
+.float_left {
+    float: left;
+    clear: both;
+    text-transform: capitalize;
+}
+
+.float_right {
+    float: right;
 }
 
 /* contact form design */
@@ -186,9 +233,13 @@ form label {
     font-weight: bolder;
 }
 
+#error-text {
+    color: red;
+}
+
  /* footer design */
 .footer-content {
-    width: 100vw;
+    width: 100%;
     height: 8rem;
 	background-color: #150c59;
     margin-top: auto;
@@ -196,7 +247,7 @@ form label {
 
 .footer-content p {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #fff;
     text-transform: capitalize;
     line-height: 8rem;
@@ -213,10 +264,28 @@ form label {
     .title {
         font-size: 2.37rem;
     } 
- }
+}
+
+@media screen and (max-width: 767px) {
+    .float_left, .float_right{
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    .nav-link {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .float_left, .float_right {
+        float: left;
+        clear: both;
+    }
+}
  
- @media screen and (min-width: 600px) {
-     .card {
+@media screen and (min-width: 600px) {
+     .main {
         flex-direction: row;
         max-width: 75rem;
      }

@@ -1,7 +1,59 @@
 <%- include("partials/header"); -%>
 
-	<h1> <%= blogTitle %> </h1>
+	<% postContent.forEach(function(element) { %>
+		<div class="container mt-5 mb-5">
+			<div class="row row-cols-1 row-cols-md-2">
+				<div class="col mb-4 mx-auto">
+					<div class="card text-white bg-dark">
+						<div class="card-header text-center">
+							<small class="float_left">Post created by &rarr; <%= element.bloggerName %></small>
+							<small class="float_right">Post created on &rarr; <%= element.createdAt %></small>
+						</div>
+						<img src="data:image/<%=element.blogImage.contentType%>;base64,<%=element.blogImage.data.toString('base64')%>" class="card-img-top" alt="blog-image">
+						<div class="card-body">
+							<h2 class="card-title text-center text-uppercase mt-3 mb-5"> <%= element.composeTitle %>  </h2>
+							<p class="card-text"> <%= element.composeBody %> </p>
+						</div>
+						<div class="card-footer text-left">
+							
+							<span id="liked" name="likes">
+								<i class="fas fa-heart likeicon" onclick="hi();"></i> LIKE
+							</span>
+							<span id="disliked" name="dislikes">
+								<i class="fas fa-heart-broken pl-5 dislikeicon"></i> DISLIKE
+							</span>
+							<input type="submit" onclick="update();">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% }); %>
 
-	<p> <%= blogContent %> </p>
+	<script>
+		function hi(ev){
+				console.log(ev);
+		}
+		// window.onload = ()=>{
+		// 	let icon1 = document.getElementById("liked");
+		// 	let icon2 = document.getElementById("disliked");
+		// 	var likeCount = 0, dislikeCount = 0;
+
+			
+				// icon1.addEventListener("click", ()=>{
+				// likeCount += 1;
+				// icon1.innerHTML = likeCount;
+				// });
+
+				// icon2.addEventListener("click", ()=>{
+				// 	dislikeCount += 1;
+				// 	icon2.innerHTML = dislikeCount;
+				// });
+			// }
+
+			// console.log(icon1);
+		// };
+	</script>
 
 <%- include("partials/footer"); -%>

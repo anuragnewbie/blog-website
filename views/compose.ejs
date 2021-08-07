@@ -3,25 +3,42 @@
 	<div class="pt-2 mb-5">
 		<h1 id="mast-head">Post your blog</h1>
 
-		<form action="/compose" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+		<form id="form" action="/compose" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 			<div class="form-group">
-				<label>Your Name</label>
-				<input type="text" class="form-control" name="bloggerName" required>
+				<label for="name">Your Name</label>
+				<input type="text" class="form-control" id="name" name="bloggerName" required>
+				<small id="error-text"></small>
 			</div>
 			<div class="form-group">
-				<label>Title</label>
-				<input type="text" class="form-control" name="composeTitle" required>
+				<label for="title">Title</label>
+				<input type="text" class="form-control" id="title" name="composeTitle" required>
 			</div>
 			<div class="form-group">
-				<label>Post</label>
-				<textarea type="textarea" class="form-control" rows="5" cols="50" name="composeBody" required></textarea>
+				<label for="post">Post</label>
+				<textarea type="textarea" class="form-control" id="post" rows="5" cols="50" name="composeBody" required></textarea>
 			</div>
 			<div class="form-group pb-3">
-				<label id="image-label">Upload an image for your blog post &nbsp; </label>
-				<input type="file" name="blogImage" accept="image" required>
+				<label for="image-label">Upload an image for your blog post &nbsp; </label>
+				<input type="file" id="image-label" name="blogImage" accept="image" required>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg form-control" name="button">Publish</button>
 		</form>
 	</div>
+
+	<script defer>
+		const name = document.getElementById('name');
+		const error = document.getElementById('error-text');
+		const form = document.getElementById('form');
+
+		form.addEventListener('submit', (ev)=>{
+			var string = /^[A-Z a-z]+$/;
+			if(name.value.match(string)){
+				return true;
+			}else{
+				ev.preventDefault();
+				error.innerText = "*** Name cannot have digits ***";
+			}
+		});
+	</script>
 
 <%- include("partials/footer"); -%>
